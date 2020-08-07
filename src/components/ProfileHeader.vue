@@ -4,7 +4,7 @@
         <div class="logo"></div>
         <div class="name">{{ name }}</div>
     </div>
-    <div class="create_contact" @click="$emit('showPanelCreate')"></div>
+    <div class="create_contact" @click="showPanelCreate"></div>
     <div class="logout" @click="logout"></div>
   </div>
 </template>
@@ -24,20 +24,18 @@ export default {
 
   computed: {
     name() {
-        console.log('this.$store.getters.info.name----', this.$store.getters.info);
-        if(this.$store.getters.info.name === '') {
-            return this.$store.getters.info.name = 'anonimus'
-        }else{
-            return this.$store.getters.info.name
-        }
+        return this.$store.getters.info.name
     }
   },
   methods: {
-      async logout() {
-          await this.$store.dispatch('logout')
-              this.$router.push('/');
-			},
-  }
+    async logout() {
+        await this.$store.dispatch('logout')
+            this.$router.push('/');
+		},
+        showPanelCreate() {
+            this.$emit('showPanelCreate')
+        }
+    }
 }
 
 </script>
