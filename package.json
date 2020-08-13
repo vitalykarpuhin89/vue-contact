@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "firebase": "^7.17.1",
+    "gh-pages": "^3.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuelidate": "^0.7.5",
@@ -24,5 +25,18 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalykarpuhin89/vue-contact.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalykarpuhin89/vue-contact/issues"
+  },
+  "homepage": "https://github.com/vitalykarpuhin89/vue-contact#readme",
+  "keywords": []
 }
