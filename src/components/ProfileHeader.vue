@@ -24,7 +24,11 @@ export default {
 
   computed: {
     name() {
-        return this.$store.getters.info.name
+        if(this.$store.getters.info.name === '') {
+            return this.$store.getters.info.name = 'Takeoff Staff'
+        } else {
+            return this.$store.getters.info.name
+        }
     }
   },
   methods: {
