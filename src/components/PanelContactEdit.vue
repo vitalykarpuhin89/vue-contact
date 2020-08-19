@@ -25,7 +25,7 @@
 			</div>
 				<button class="btn">Сохранить</button>
     </form>
-    <div class="overlay" v-if="save">изменено</div>
+    <div class="overlay" v-if="save">Сохраненно</div>
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
         this.save = true
         setTimeout(() => {
           this.save = false
-        }, 1500)
+        }, 5500)
         
 			} catch (error) {
 				console.log('error', error);
@@ -70,7 +70,6 @@ export default {
 <style scoped>
 	h1 {
 		color: #7f8285;
-		/* margin-top: 50px; */
 	}
 	.panel_contact_create {
     position: relative;
@@ -127,17 +126,11 @@ export default {
 	}
 
   .overlay {
-    background: transparent;
-    background-color: rgba(152, 158, 158, 0.5);
     position: absolute;
     left: 0;
     top: 0;
-    color: #fff;
-    border-radius: 8px;
-    width: 100%;
-    height: 50px;
+    color: rgb(41, 230, 16);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 20px;
   }
 </style>

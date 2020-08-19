@@ -93,9 +93,7 @@ export default {
       try {
         await this.$store.dispatch('login', formData)
         this.$emit('submitHandler');
-      } catch (e) {
-        throw e
-      }
+      } catch (e) {console.log('e', e);}
     },
 
     passwordViewToggle() {
@@ -105,7 +103,6 @@ export default {
 
     passworView() {
       this.password.length ? this.passwordView.classList.add('view_show') : this.passwordView.classList.remove('view_show');
-
     }
   },
 }
@@ -161,7 +158,7 @@ export default {
     position: absolute;
     top: 15px;
     right: 0px;
-    background-image: url('../assets/view.svg');
+    background-image: url('../assets/images/view.svg');
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
@@ -174,7 +171,7 @@ export default {
   }
 
   .password_view_hidden {
-    background: url('../assets/no-view.svg') 0 0 no-repeat;
+    background: url('../assets/images/no-view.svg') 0 0 no-repeat;
   }
 
   small {

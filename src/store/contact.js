@@ -18,11 +18,12 @@ export default {
             }
         },
 
-        async createContact({commit, dispatch}, {firstName, lastName, telephone, email, city}) {
+        async createContact({commit, dispatch}, {firstName, lastName, telephone, email, city, status}) {
             try {
                 const uid = await dispatch('getUid')
-                const contact = await firebase.database().ref(`/users${uid}/contacts`).push({firstName, lastName, telephone, email, city})
-                return {firstName, lastName, telephone, email, city, id: contact.key}
+                const contact = await firebase.database().ref(`/users${uid}/contacts`).push({firstName, lastName, telephone, email, city, status})
+				console.log('contact', contact)
+				return {firstName, lastName, telephone, email, city, status, id: contact.key}
             } catch (error) {
                 throw error
             }
@@ -38,16 +39,21 @@ export default {
         },
 
         async delete({commit, dispatch}, {id}) {
-            console.log('idddd', id);
             try {
                 const uid = await dispatch('getUid')
-                const a = await firebase.database().ref(`/users${uid}/contacts/${id}`).remove()
-                dispatch('fetchInfo', a);
-
+                await firebase.database().ref(`/users${uid}/contacts/${id}`).remove()
             } catch (error) {
                 throw error
             }
         },
+        async changeStatus({commit, dispatch}, {id, status}) {
+            try {
+                const uid = await dispatch('getUid')
+                await firebase.database().ref(`/users${uid}/contacts`).child(id).update({status})
+            } catch (error) {
+                throw error
+            }
+		},
+    },
 
-    }
 }

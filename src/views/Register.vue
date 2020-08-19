@@ -1,15 +1,13 @@
 <template>
 <div class="loyout">
-  <img alt="Vue logo" src="../assets/logo.png">
+  <img alt="Vue logo" src="../assets/images/logo.png">
   <div class="register">
     <Login  
       @submitHandler="hideDownloads"
     />
     <Loader v-if="loading"/>
   </div>
-
 </div>
- 
 </template>
 
 <script>

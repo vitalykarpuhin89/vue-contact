@@ -1,9 +1,10 @@
 <template>
   <div class="panel_contact_create">
-		<h1>Создать контакт</h1>
+			<div class="overlay" v-if="errorSave">Имя и фамиля обязательно</div>
 
+		<h1>Создать контакт</h1>
 		<form @submit.prevent="createContact">
-      		<div class="field">
+      <div class="field">
 				<input type="text" placeholder="Имя" v-model="firstName">
 			</div>
 			<div class="field">
@@ -18,7 +19,7 @@
 			<div class="field">
 				<input type="text" placeholder="Город" v-model="city">
 			</div>
-				<button class="btn">Создать</button>
+			<button class="btn">Создать</button>
     </form>
   </div>
 </template>
@@ -29,6 +30,7 @@ export default {
   name: 'panelContactCreate',
   data() {
 		return {
+      errorSave: false,
 			firstName: '',
 			lastName: '',
 			telephone: '',
@@ -40,17 +42,22 @@ export default {
   methods: {
 		async createContact() {
 			if(this.firstName === '' || this.lastName === '') {
-				alert('имя обязательно'); 
+        this.errorSave = true;
+        setTimeout(() => {
+          this.errorSave = false
+        }, 5500)
 				return
-			}
+      }
+      console.log('this.firstName.trim()', this.firstName)
 			try {
 				const contact = await this.$store.dispatch('createContact', {
-					firstName: this.firstName,
-					lastName: this.lastName,
+					firstName: this.firstName.replace(/\s/g, '') ,
+					lastName: this.lastName.replace(/\s/g, ''),
 					telephone: this.telephone,
 					email: this.email,
-					city: this.city
-				})
+					city: this.city,
+					status: false
+        })
 				this.$emit('created', contact)
 				this.firstName = ''
 				this.lastName = ''
@@ -96,7 +103,7 @@ export default {
 	}
 
 	.btn {
-		margin-top: 40px;
+    margin-top: 40px;
     width: 100%;
     height: 50px;
     border-radius: 5px;
@@ -104,15 +111,28 @@ export default {
     line-height: 25px;
     background-color: rgba(127, 133, 133, 0.5);
     color: #fff;
-	cursor: pointer;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-		border: none;
-		outline: none;
+    border: none;
+    outline: none;
     -ms-user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
 	}
+
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    color: rgb(230, 84, 16);
+    display: flex;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
 </style>

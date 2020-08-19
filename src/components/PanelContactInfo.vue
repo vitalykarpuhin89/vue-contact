@@ -12,8 +12,8 @@
     </div>
   </div>
 </template>
-<script>
 
+<script>
 export default {
   props: ['contactInfo'],
   name: 'panelContactInfo',
@@ -27,11 +27,7 @@ export default {
      await this.$store.dispatch('fetchInfo')
     }
   },
-
 }
-
-
-
 </script>
 
 <style scoped>
@@ -47,14 +43,13 @@ export default {
   color: #fff;
   box-sizing: border-box;
 }
-  .panel_contact_info {
-    font-family: LatoRegular, sans-serif;
-    font-size: 20px;
-    color: rgb(134, 128, 128);
-    height: 100%;
-  }
-
-  .panel_contact_info p {
-    margin-top: 30px;
-  }
+.panel_contact_info {
+  font-family: LatoRegular, sans-serif;
+  font-size: 20px;
+  color: rgb(134, 128, 128);
+  height: 100%;
+}
+.panel_contact_info p {
+  margin-top: 30px;
+}
 </style>

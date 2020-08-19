@@ -158,7 +158,7 @@ form {
   position: absolute;
   top: 15px;
   right: 0px;
-  background-image: url('../assets/view.svg');
+  background-image: url('../assets/images/view.svg');
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -169,7 +169,7 @@ form {
   visibility: visible;
 }
 .password_view_hidden {
-  background: url('../assets/no-view.svg') 0 0 no-repeat;
+  background: url('../assets/images/no-view.svg') 0 0 no-repeat;
 }
 small {
   font-size: 10px;
