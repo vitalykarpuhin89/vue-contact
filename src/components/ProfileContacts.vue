@@ -8,14 +8,11 @@
       <div class="search">
         <input class="input_search" placeholder="поиск" @keyup="searchContacts">
       </div>
-      <div class="counter">
-        <p>{{ contacts.length == 0 ? 'У вас пока нет контактов' : `У вас ${contacts.length} контакт ( - ов )` }}</p>
+      <div class="count">
+        <p>{{ contacts.length == 0 ? searchStr : `У вас ${contacts.length} контакт ( - ов ) ` }}</p>
       </div>
       <div class="wrapper">
-        <div class="empty_contacts" v-if="emptyBlock">
-          Не найдено
-        </div>
-        <ProfileContactsItem v-else
+        <ProfileContactsItem
           v-for="user in contacts"
           :key="user.id"
           v-bind:user="user"
@@ -69,7 +66,8 @@ export default {
       panelEditContact: false,
       loading: true,
       query: '',
-      emptyBlock: false,
+      searchStr: 'У вас пока нет контактов',
+      strComputed: ``
     }
   },
   async mounted() {
@@ -124,6 +122,9 @@ export default {
         })
         this.contacts = this.contacts.filter(t => t.id !== contact.id)
         this.hidenPanelAll();
+        if(this.contacts.length == 0) {
+          this.searchStr = 'У вас пока нет контактов'
+        }
 			} catch (error) {
 				// throw error
 			}
@@ -144,10 +145,15 @@ export default {
       this.contacts = this.contacts.filter(contact =>  {
         return contact.firstName.includes(searcString) || contact.lastName.includes(searcString)
       })
+      
+      console.log('this.contacts', this.contacts)
+      if(this.contacts == {}) return;
+      if(this.contacts.length == 0) {
+        this.searchStr = `Найдено ${this.contacts.length} контактов`
+      }
       if(searcString === '') {
         this.contacts = await this.$store.dispatch('fetchContacts');
       }
-      this.contacts.length === 0 ? this.emptyBlock = true : this.emptyBlock = false
     },
 
     sortByName() {
@@ -245,12 +251,12 @@ export default {
     background-color: rgba(51, 50, 50, 0.06);
   }
 
-  .counter {
+  .count {
     background: rgba(19, 16, 16, 0.06);
     padding: 7px;
   }
 
-  .counter * {
+  .count * {
     font-size: 11px;
     background-color: rgba(10, 5, 5, 0.178);
     display: block;

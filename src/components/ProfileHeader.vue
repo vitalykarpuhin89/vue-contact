@@ -2,7 +2,7 @@
 	<div class="profile_contacts_header">
     <div class="left">
         <div class="logo"></div>
-        <div class="name">{{ name[0].toUpperCase() + name.slice(1) }}</div>
+        <div class="name">{{ name }}</div>
     </div>
     <div class="create_contact" @click="showPanelCreate"></div>
     <div class="logout" @click="logout"></div>
@@ -74,6 +74,10 @@ a {
 .name {
   padding-left: 20px;
   color: #fff;
+}
+
+.name::first-letter {
+  text-transform: uppercase;
 }
 
 .logo {
