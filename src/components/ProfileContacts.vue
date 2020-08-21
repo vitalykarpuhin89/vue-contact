@@ -3,7 +3,6 @@
     <ProfileHeader
        @showPanelCreate="showPanelCreate"
     />
-    <h1>77777777777777777777777</h1>
     <div class="profile_contacts_block">
       <div class="search">
         <input class="input_search" placeholder="поиск" @keyup="searchContacts">
